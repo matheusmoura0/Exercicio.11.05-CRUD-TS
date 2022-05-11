@@ -1,5 +1,3 @@
-import { Pool, ResultSetHeader } from 'mysql2/promise';
-
 import IPost from '../interfaces/post.interface';
 
 import connection from './connection';
@@ -31,7 +29,7 @@ export default class PostModel {
     return newPost;
   }
   
-  public updatePost = async ({title, author, category, publicationDate, id}: IPost): Promise<IPost> => {
+  public update = async ({title, author, category, publicationDate, id}: IPost): Promise<IPost> => {
     const [result] = await connection.execute(
       'UPDATE TypeScriptExpress.Posts SET title=? author=? category=? publicationDate=? WHERE id=?',
       [title, author, category, publicationDate, id]
@@ -41,7 +39,7 @@ export default class PostModel {
   }
 
   public delete = async ( id: number): Promise <void> => {
-    const [result] = await connection.execute(
+    await connection.execute(
       'DELETE FROM TypeScriptExpress.Posts WHERE id=?',
       [id],
     );

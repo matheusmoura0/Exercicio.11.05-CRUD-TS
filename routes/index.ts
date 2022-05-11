@@ -1,9 +1,14 @@
 import { Router } from 'express';
-import { exportUserPost, exportAllPosts, deletePost, editPost } from '../controllers/ControllerPosts';
+import { getIdPost, getAllPosts, deletePost, editPost, searchPost } from '../controllers/ControllerPosts';
 
 const routes = Router();
 
-routes.post('/posts', exportUserPost);
-routes.get('/posts', exportAllPosts);
+
+routes.get('/posts', getAllPosts);
 routes.delete('/posts', deletePost);
 routes.put('/posts', editPost);
+
+routes.get('/posts/search', searchPost);
+routes.get('/post/:id', getIdPost);
+
+export default routes;
